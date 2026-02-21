@@ -21,7 +21,6 @@ app.get("/proxy", async (req, res) => {
     const response = await fetch(targetUrl);
     const text = await response.text();
 
-    // HTML をそのまま返す
     res.set("Content-Type", "text/html; charset=utf-8");
     res.send(text);
 
@@ -31,5 +30,5 @@ app.get("/proxy", async (req, res) => {
   }
 });
 
-// Vercel はポート番号を自動で設定する
+// Vercel は listen を使わない
 module.exports = app;
