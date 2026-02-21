@@ -11,7 +11,7 @@ app.get("/", (req, res) => {
   res.send("Server is running!");
 });
 
-// ここが「プロキシ」部分
+// プロキシ機能
 app.get("/proxy", async (req, res) => {
   const targetUrl = req.query.url;
   if (!targetUrl) {
@@ -22,7 +22,6 @@ app.get("/proxy", async (req, res) => {
     const response = await fetch(targetUrl);
     const text = await response.text();
 
-    // とりあえずそのまま HTML を返す
     res.send(text);
   } catch (err) {
     console.error(err);
