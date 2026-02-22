@@ -1,10 +1,11 @@
 export default async function handler(req, res) {
-  const targetUrl = "https://example.com"; // ← まずは絶対に成功するURL
+  // Wikipedia のトップページを取得
+  const targetUrl = "https://ja.wikipedia.org/wiki/メインページ";
 
   try {
     const response = await fetch(targetUrl, {
       headers: {
-        "User-Agent": "Mozilla/5.0", // ← これが重要（bot拒否対策）
+        "User-Agent": "Mozilla/5.0" // bot 拒否対策
       }
     });
 
@@ -13,6 +14,8 @@ export default async function handler(req, res) {
     }
 
     const html = await response.text();
+
+    // Wikipedia の HTML をそのまま返す
     res.status(200).send(html);
 
   } catch (err) {
